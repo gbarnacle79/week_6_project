@@ -62,18 +62,7 @@ def savegameRecord():
         return redirect("/")
     return render_template("inputgameform.html", form=form)
 
-@app.route("/savecustRecord",methods=["GET","POST"])
-def savecustRecord():
-    form = AddCust()
-    if request.method == 'POST':
-        name=form.cust_name.data
-        age=form.cust_age.data
-        sub=form.subtier.data
-        newcust = Customer(cust_name=name, cust_age=age, subtier=sub)
-        db.session.add(newcust)
-        db.session.commit()
-        return redirect("/")
-    return render_template("inputcustform.html", form=form)
+
 
 @app.route("/savecustplat",methods=["GET","POST"])
 def savecustplat():
@@ -87,7 +76,7 @@ def savecustplat():
         newcust = Customer(cust_name=name, cust_age=age, subtier='platinum', gameid=game)
         db.session.add(newcust)
         db.session.commit()
-        return redirect("/")
+        return redirect("/customers")
     return render_template("savecust.html", form=form)
 
 
@@ -103,7 +92,7 @@ def savecustgold():
         newcust = Customer(cust_name=name, cust_age=age, subtier='gold', gameid=game)
         db.session.add(newcust)
         db.session.commit()
-        return redirect("/")
+        return redirect("/customers")
     return render_template("savecust.html", form=form)
 
 @app.route("/savecustsilver",methods=["GET","POST"])
@@ -118,7 +107,7 @@ def savecustsilver():
         newcust = Customer(cust_name=name, cust_age=age, subtier='silver', gameid=game)
         db.session.add(newcust)
         db.session.commit()
-        return redirect("/")
+        return redirect("/customers")
     return render_template("savecust.html", form=form)
 
 @app.route("/savecustbronze",methods=["GET","POST"])
@@ -133,7 +122,7 @@ def savecustbronze():
         newcust = Customer(cust_name=name, cust_age=age, subtier='bronze', gameid=game)
         db.session.add(newcust)
         db.session.commit()
-        return redirect("/")
+        return redirect("/customers")
     return render_template("savecust.html", form=form)
 
 @app.route("/gamedetails/<int:gano>")
