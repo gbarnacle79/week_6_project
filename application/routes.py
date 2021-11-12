@@ -147,7 +147,7 @@ def deletecustomer(cuno):
     customer = Customer.query.filter_by(cuno=cuno).first()
     db.session.delete(customer)
     db.session.commit()
-    return redirect("/")
+    return redirect("/customers")
 
 @app.route('/editcustRecord/<int:cuno>', methods=['GET', 'POST'])
 def editcustRecordForm(cuno):
@@ -159,5 +159,5 @@ def editcustRecordForm(cuno):
         customer.subtier = form.subtier.data
         customer.gname = form.gname.data
         db.session.commit()
-        return redirect("/")
+        return redirect("/customers")
     return render_template('editcustform.html', form=form)
