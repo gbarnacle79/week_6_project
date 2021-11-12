@@ -68,7 +68,7 @@ def savegameRecord():
 def savecustplat():
     form = AddCust()
     data = Game.query.filter(or_(Game.subtier=='platinum',Game.subtier=='gold',Game.subtier=='silver',Game.subtier=='bronze')).all()
-    form.gname.choices =[(game.gano,game.gname) for game in Game.query.all()]
+    form.gname.choices =[(game.gano,game.gname) for game in Game.query.filter(or_(Game.subtier=='platinum',Game.subtier=='gold',Game.subtier=='silver',Game.subtier=='bronze')).all()]
     if request.method == 'POST':
         name=form.cust_name.data
         age=form.cust_age.data
@@ -84,7 +84,7 @@ def savecustplat():
 def savecustgold():
     form = AddCust()
     data = Game.query.filter(or_(Game.subtier=='gold',Game.subtier=='silver',Game.subtier=='bronze')).all()
-    form.gname.choices =[(game.gano,game.gname) for game in Game.query.all()]
+    form.gname.choices =[(game.gano,game.gname) for game in Game.query.filter(or_(Game.subtier=='gold',Game.subtier=='silver',Game.subtier=='bronze')).all()]
     if request.method == 'POST':
         name=form.cust_name.data
         age=form.cust_age.data
@@ -99,7 +99,7 @@ def savecustgold():
 def savecustsilver():
     form = AddCust()
     data = Game.query.filter(or_(Game.subtier=='silver',Game.subtier=='bronze')).all()
-    form.gname.choices =[(game.gano,game.gname) for game in Game.query.all()]
+    form.gname.choices =[(game.gano,game.gname) for game in Game.query.filter(or_(Game.subtier=='silver',Game.subtier=='bronze')).all()]
     if request.method == 'POST':
         name=form.cust_name.data
         age=form.cust_age.data
@@ -114,8 +114,8 @@ def savecustsilver():
 def savecustbronze():
     form = AddCust()
     data = Game.query.filter(Game.subtier=='bronze').all()
-    form.gname.choices =[(game.gano,game.gname) for game in Game.query.all()]
-    if request.method == 'POST':
+    form.gname.choices =[(game.gano,game.gname) for game in Game.query.filter(Game.subtier=='bronze').all()]
+    if request.method == 'POST': 
         name=form.cust_name.data
         age=form.cust_age.data
         game = form.gname.data
@@ -147,7 +147,7 @@ def deletecustomer(cuno):
     customer = Customer.query.filter_by(cuno=cuno).first()
     db.session.delete(customer)
     db.session.commit()
-    return redirect("/")
+    return redirect("/customers")
 
 @app.route('/editcustRecord/<int:cuno>', methods=['GET', 'POST'])
 def editcustRecordForm(cuno):
@@ -159,5 +159,5 @@ def editcustRecordForm(cuno):
         customer.subtier = form.subtier.data
         customer.gname = form.gname.data
         db.session.commit()
-        return redirect("/")
+        return redirect("/customers")
     return render_template('editcustform.html', form=form)
