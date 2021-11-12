@@ -1,0 +1,58 @@
+<html>
+<center> <h2> George's Gaming Garage <span>&copy;</span> </h2>
+<br>
+<br>
+<br>
+<a href="{{ url_for('customers') }}"> Our Customers! </a>
+<a href="{{ url_for('savegameRecord') }}"> New Games! </a>
+
+<form action="{{ url_for('filtergames') }}" method="POST">
+<select name="subtier">
+			<option value="all"> All records </option>
+			<option value="bronze"> Bronze! </option>
+			<option value="silver"> Silver! </option>
+			<option value="gold"> Gold! </option>
+			<option value="platinum"> Platinum! </option>
+			
+
+			</select>
+			<input type="submit" value="Filter">
+</form>
+Table of available games at each subscription tier, look around and decide what works for you!
+<table>
+	<tr bgcolor='Green'>
+		
+		<td > Name </td>
+		<td> Game ID </td>
+		<td > Age Rating </td>
+		<td > Genre</td>
+		<td> Operations </td>
+
+	</tr>
+	{%  for gamerecord in gamerecords %}
+
+		<tr>
+				<td> <a href="{{ url_for('gamedetails', gano = gamerecord.gano) }}"> {{ gamerecord.gname }}</a> </td>
+				<td> {{gamerecord.gano}} </td>
+				<td> {{gamerecord.age_rate}} </td>
+				<td> {{gamerecord.genre}} </td>
+				<td> <a href="{{ url_for('editgameRecordForm', gano = gamerecord.gano) }}"> edit </a>, 
+					<a href="{{ url_for('deletegame', gano = gamerecord.gano) }}"> delete </a>
+				</td>
+		</tr>
+
+	
+
+		{% endfor %}
+</table>
+		If you're a new customer select a subscription tier and make your account
+		<br>
+		<button type="button" id="platinum" name="subtier" onclick="window.location.href='{{ url_for('savecustplat')}}';">Platinum £4 </button><br>
+		<button type="button" id="platinum" name="subtier" onclick="window.location.href='{{ url_for('savecustgold')}}';">Gold £3 </button><br>
+		<button type="button" id="platinum" name="subtier" onclick="window.location.href='{{ url_for('savecustsilver')}}';">Silver £2 </button><br>
+		<button type="button" id="platinum" name="subtier" onclick="window.location.href='{{ url_for('savecustbronze')}}';">Bronze £1 </button><br>
+
+		
+
+
+</html>
