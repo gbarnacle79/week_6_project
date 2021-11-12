@@ -1,0 +1,30 @@
+<html>
+<center> <h2> Customer Information System </h2>
+<br>
+<br>
+<br>
+<a href="{{ url_for('home') }}"> Back to Games! </a>
+<table>
+
+	<tr bgcolor='Green'>
+		
+		<td > Name </td>
+		<td > Age </td>
+		<td > Game</td>
+		<td> Operations </td>
+	
+	</tr>
+	{%  for customerrecord in customerrecords %}
+	
+		<tr>
+				<td> <a href="{{ url_for('customerdetails', cuno=customerrecord.cuno) }}"> {{ customerrecord.cust_name }}</a> </td>
+				<td> {{customerrecord.cust_age}} </td>
+				<td> {{customerrecord.gameid}} </td>
+				<td> <a href="{{ url_for('editcustRecordForm', cuno = customerrecord.cuno) }}"> edit </a>, 
+					<a href="{{ url_for('deletecustomer', cuno = customerrecord.cuno) }}"> Cancel Subscription </a>
+				</td>
+		</tr>
+	
+	{% endfor %}
+</table>
+</html>
