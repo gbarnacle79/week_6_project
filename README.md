@@ -1,16 +1,16 @@
-#QA DevOps Week 6 project 
+# QA DevOps Week 6 project 
 
 This file is here to explain details on my app and how I developed it 
 
  
 
-##Project brief: 
+## Project brief: 
 
 The brief for this project was to create a functioning web app which was CRUD functional, CRUD is defined as an app that has a user interface which one can Create, Read, Update and Delete the data. Beyond this the app had to include at least two databases with at least a one-to-many relationship.  
 
  
 
-##My App: 
+## My App: 
 
 My app was modelled as a website for a company that provides temporary access to video games in return for a monthly subscription. Upon entering the application, the user is greeted to a homepage that presents the games currently available  
 
@@ -44,7 +44,7 @@ Clicking on a game’s name takes you to a new page that gives the details of th
 
  
 
-##Continuous Integration: 
+## Continuous Integration: 
 
 A Scrum board on JIRA was setup containing all the story points to create this app and the relevant issues to each story point, all these story points were put onto relevant epics and these were out into a sprint. 
 
@@ -66,7 +66,7 @@ The git repository was linked to a Jenkins server via a webhook. This Jenkins bu
 
  
 
-##Tests: 
+## Tests: 
 
 Tests were written in order to ensure each aspect of the application was running as intended, unit testing of the functions in the app was applied. The method used for unit testing was the pytest tool, specifically pytest-cover as this tool analyses the code and the tests written to produce a report to show which tests succeeded, which failed and what lines of the code have not been covered by the tests. A webhook was used to connect Jenkins to allow it to run a build on the new server and test it. Once a build is created and the tests are running the coverage report is saved as an artifact. 
 
@@ -75,12 +75,12 @@ Tests were written in order to ensure each aspect of the application was running
 ![coverage report](https://github.com/gbarnacle79/week_6_project/blob/main/Images/Coverage_report.png)
 
 
-##Risk Assessment:
+## Risk Assessment:
 
 A risk assessment was performed to gauge potential issues the app may suffer from when running and to try avoid them.
 ![Risk Assessment](https://github.com/gbarnacle79/week_6_project/blob/main/Images/riskassessment.png)
 
-##Changes Made: 
+## Changes Made: 
 
 In the initial outline of the project, it was intended for the details of the subscription tiers be held within a database. In practice this caused far more issues when it came to selecting a subscription tier and from this the games for that tier when entering the customers data. So instead, it was made into a field within both the customers and the games databases as this allowed a simple filter and a one-to-many relationship to be built between the two databases rather than between all three databases. This also reduced memory usage; however, it makes changing details for the subscription tiers more difficult.  
 
@@ -88,7 +88,7 @@ In the initial outline of the project, it was intended for the details of the su
 
  
 
-##Known Issues:  
+## Known Issues:  
 
 When editing customer information, there is no filter on games. This allows customers to lower themselves to a cheaper subscription tier but still allow them to pick the higher tier games. In future builds this may be circumnavigated by when a customer edits there is a separate page where one first picks sub tier and then games, or not allow changing sub tier without deleting the account. 
 
